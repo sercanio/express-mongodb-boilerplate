@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  div.container.mt-5.vh-100
+    h1= error.status || error.code
+    p= error.message

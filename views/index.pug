@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  // Hero Section
+  div.container-fluid.hero-section
+    div.row
+      div.col-md-12.text-center.text-white
+        h1.display-4.mb-4.text-dark Express Boilerplate
+        p.lead.mb-4.text-dark Your tagline goes here.
+
+  // Main Content
+  div.container.mt-5
+    div.row
+      - for (let i = 1; i <= 3; i++)
+        div.col-md-4
+          div.card.mb-4
+            - const imageUrl = `https://source.unsplash.com/random/300x300?sig=${i}`;
+            img.card-img-top(src=imageUrl, alt=`Card ${i} image`)
+            div.card-body
+              h5.card-title Card #{i}
+              p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+              a.btn.btn-primary(href="#") Learn more

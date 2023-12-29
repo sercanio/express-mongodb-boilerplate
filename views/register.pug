@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div.container.mt-5.vh-100
+    div.row.justify-content-center
+      div.col-md-6
+        div.card
+          div.card-body
+            h2.card-title.text-center.mb-4 Register Form
+
+            //- Display error message if it exists
+            if error
+              div.alert.alert-danger
+                p= error.message
+
+            form(action="/register" method="POST")
+              div.form-group
+                label(for="username") Username
+                input#username.form-control(type="text" name="username" required)
+              div.form-group
+                label(for="email") Email
+                input#email.form-control(type="email" name="email" required)
+              div.form-group
+                label(for="password") Password
+                input#password.form-control(type="password" name="password" required)
+              div.form-group
+                label(for="confirmPassword") Confirm Password
+                input#confirmPassword.form-control(type="password" name="confirmPassword" required)
+              button.btn.btn-primary.btn-block(type="submit") Register
+
+            p.text-center.mt-3
+              a(href="/login") Already have an account? Login here.

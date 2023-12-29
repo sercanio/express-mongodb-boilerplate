@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.container-fluid.hero-section
+    div.row
+      div.col-md-12.text-center.text-white
+        h1.display-4.mb-4 Login
+
+  div.container.mt-5.vh-100
+    div.row
+      div.col-md-6.offset-md-3
+        if error.length
+          div.alert.alert-danger
+            each err in error
+              p= err
+        form(action="/login" method="post")
+          div.form-group
+            label(for="username") Username:
+            input(type="text" class="form-control" id="username" name="username" required)
+          div.form-group
+            label(for="password") Password:
+            input(type="password" class="form-control" id="password" name="password" required)
+          button.btn.btn-primary(type="submit") Login
