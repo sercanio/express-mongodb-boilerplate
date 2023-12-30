@@ -54,7 +54,17 @@ module.exports = function main(options, cb) {
   const app = express();
 
   // Helmet
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          "img-src": ["'self'", "*.unsplash.com", "*.w3.org"],
+          "script-src": ["'self'", "cdn.jsdelivr.net"],
+          "style-src": ["'self'", "cdn.jsdelivr.net"],
+        },
+      },
+    }),
+  );
 
   // Template engine
   app.engine("pug", pug.renderFile);
