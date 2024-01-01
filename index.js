@@ -22,18 +22,22 @@ require("dotenv").config();
 // Get environment variables
 module.exports = function main(options, cb) {
   // Set default options
-  const ready = cb || function() { };
+  const ready = cb || function () { };
   const opts = Object.assign(
     {
       // Default options
       NODE_ENV: process.env.NODE_ENV,
-      DB_CONNECTION_TIMEOUT: process.env.DB_CONNECTION_TIMOUT || 5000,
-      MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1:2717/app',
-      SESSION_COOKIE_MAXAGE: +process.env.SESSION_COOKIE_MAXAGE,
       SECRET_KEY: process.env.SECRET_KEY,
+      MONGODB_URI: process.env.MONGODB_URI,
+      DB_CONNECTION_TIMEOUT: process.env.DB_CONNECTION_TIMEOUT,
+      SESSION_COOKIE_MAXAGE: +process.env.SESSION_COOKIE_MAXAGE,
     },
     options,
   );
+
+  if (!opts.SECRET_KEY || !opts.MONGODB_URI || !opts.DB_CONNECTION_TIMEOUT || !opts.SESSION_COOKIE_MAXAGE) {
+    throw new Error("Missing required environment variables.");
+  }
 
   const logger = pino();
   logger.info(`Environment : ${opts.NODE_ENV}`);
